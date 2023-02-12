@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Caller, type: :model do
-  let(:caller) { build(:caller) }
+RSpec.describe Customer, type: :model do
+  subject { build(:customer) }
 
   it "has a valid factory" do
     expect(subject).to be_valid
   end
+
 end
