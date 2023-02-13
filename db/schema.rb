@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_003511) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.string "phone"
+    t.string "phone_number"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

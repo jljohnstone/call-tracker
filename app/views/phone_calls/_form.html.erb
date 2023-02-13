@@ -1,0 +1,45 @@
+<%= form_with(model: phone_call, class: "contents") do |form| %>
+  <% if phone_call.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(phone_call.errors.count, "error") %> prohibited this phone_call from being saved:</h2>
+
+      <ul>
+        <% phone_call.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.fields_for :customer do |f| %>
+    <div class="flex gap-6">
+      <div class="flex-auto">
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number, list: "customer-phone-number", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        <datalist id="customer-phone-number" disabled="disabled">
+        <% Customer.all.each do |customer| %>
+          <option value="<%= customer.phone_number %>"><%= customer.name %></option>
+        <% end %>
+        </datalist>
+      </div>
+      <div class="flex-initial">
+        <%= f.label :name %>
+        <%= f.text_field :name, list: "customer-name", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        <datalist id="customer-name">
+        <% Customer.all.each do |customer| %>
+          <option value="<%= customer.name %>"><%= customer.phone_number %></option>
+        <% end %>
+        </datalist>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :notes, "Call notes" %>
+    <%= form.text_area :notes, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

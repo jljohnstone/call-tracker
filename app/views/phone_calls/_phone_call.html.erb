@@ -1,0 +1,16 @@
+<div id="<%= dom_id phone_call %>">
+  <p class="text-xl font-bold">
+    <%= phone_call.customer.name %>
+  </p>
+  <p class="">
+    <%= phone_to phone_call.customer.phone_number, class: "underline text-blue-600" %>
+  </p>
+  <p class="">
+    <%= phone_call.notes %>
+  </p>
+  <% if action_name != "show" %>
+    <%= link_to "Show this phone call", phone_call, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this phone call', edit_phone_call_path(phone_call), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
