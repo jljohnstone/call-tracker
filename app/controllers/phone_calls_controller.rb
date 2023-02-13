@@ -23,10 +23,8 @@ class PhoneCallsController < ApplicationController
   # POST /phone_calls or /phone_calls.json
   def create
     @phone_call = PhoneCall.new(phone_call_params)
-    pp customer_params[:customer_attributes][:name]
-    # customer = Customer.find_or_create_by(name: phone_call_params: { customer_attributes: { :name } }, phone_number: phone_call_params: { customer_attributes: { :phone_number } }) do |customer|
 
-    # end
+
 
     respond_to do |format|
       if @phone_call.save
@@ -71,10 +69,6 @@ class PhoneCallsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def phone_call_params
       params.require(:phone_call).permit(:notes, customer_attributes: [:name, :phone_number])
-      # params.require(:phone_call).permit(:notes)
     end
 
-    def customer_params
-      params.require(:phone_call).permit(customer_attributes: [:name, :phone_number, :notes])
-    end
 end
