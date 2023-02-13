@@ -12,10 +12,10 @@
   <% end %>
 
   <%= form.fields_for :customer do |f| %>
-    <div class="flex gap-6">
+    <div class="flex gap-6" data-controller="hello">
       <div class="flex-auto">
         <%= f.label :phone_number %>
-        <%= f.text_field :phone_number, list: "customer-phone-number", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        <%= f.text_field :phone_number, list: "customer-phone-number", data: { hello_target: 'number', action: 'change->hello#setName click->hello#clearFields' }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
         <datalist id="customer-phone-number" disabled="disabled">
         <% Customer.all.each do |customer| %>
           <option value="<%= customer.phone_number %>"><%= customer.name %></option>
@@ -24,12 +24,7 @@
       </div>
       <div class="flex-initial">
         <%= f.label :name %>
-        <%= f.text_field :name, list: "customer-name", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-        <datalist id="customer-name">
-        <% Customer.all.each do |customer| %>
-          <option value="<%= customer.name %>"><%= customer.phone_number %></option>
-        <% end %>
-        </datalist>
+        <%= f.text_field :name, disabled: "disabled", data: { hello_target: 'name' }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
       </div>
     </div>
   <% end %>
