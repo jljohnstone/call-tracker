@@ -22,9 +22,10 @@ class PhoneCallsController < ApplicationController
 
   # POST /phone_calls or /phone_calls.json
   def create
-    @phone_call = PhoneCall.new(phone_call_params)
+    # @phone_call = PhoneCall.new(phone_call_params)
 
-
+    customer = Customer.find_or_create_by(phone_number: phone_call_params[:customer_attributes][:phone_number], name: phone_call_params[:customer_attributes][:name])
+    @phone_call = PhoneCall.new(notes: phone_call_params[:notes], customer: customer)
 
     respond_to do |format|
       if @phone_call.save
