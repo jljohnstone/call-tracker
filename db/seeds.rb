@@ -11,3 +11,8 @@ require 'factory_bot_rails'
 500.times do
   FactoryBot.create(:customer)
 end
+
+User.create(name: "Jason Robertson", email: "jason@example.com")
+User.create(name: "Joel Miller", email: "joel@example.com")
+User.create(name: "Ashley Smith", email: "ashley@example.com")
+User.create(name: "Makayla Hill", email: "makayla@example.com")

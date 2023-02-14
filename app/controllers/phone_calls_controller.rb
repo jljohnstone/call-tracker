@@ -25,7 +25,7 @@ class PhoneCallsController < ApplicationController
     # @phone_call = PhoneCall.new(phone_call_params)
 
     customer = Customer.find_or_create_by(phone_number: phone_call_params[:customer_attributes][:phone_number], name: phone_call_params[:customer_attributes][:name])
-    @phone_call = PhoneCall.new(notes: phone_call_params[:notes], customer: customer)
+    @phone_call = PhoneCall.new(notes: phone_call_params[:notes], customer: customer, user_id: phone_call_params[:user_id])
 
     respond_to do |format|
       if @phone_call.save
@@ -69,7 +69,7 @@ class PhoneCallsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def phone_call_params
-      params.require(:phone_call).permit(:notes, customer_attributes: [:name, :phone_number])
+      params.require(:phone_call).permit(:notes, :user_id, customer_attributes: [:name, :phone_number])
     end
 
 end
