@@ -1,18 +1,21 @@
-<div id="<%= dom_id phone_call %>" class="pb-3 my-3 border-b border-gray-300">
-  <p class="text-xl font-bold">
-    <%= phone_call.customer.name %>
-  </p>
-  <p class="">
-    <%= phone_to phone_call.customer.phone_number, class: "underline text-blue-600" %>
-  </p>
-  <p class="">
-    <%= phone_call.notes %>
-  </p>
-  <p>
-    Assigned to: <%= phone_call.user.name %>
-  </p>
+<div id="<%= dom_id phone_call %>" class="flex items-center pb-3 my-3 border-b border-gray-300">
+  <div class="flex-auto">
+    <p class="text-xl font-bold mb-1">
+      <%= phone_call.customer.name %>
+    </p>
+    <p class=" mb-1">
+      <%= phone_to phone_call.customer.phone_number, class: "bg-gray-200 border-gray-300 border text-gray-800 px-2 py-1 text-sm rounded-sm" %>
+    </p>
+    <p class=" mb-1">
+      <%= phone_call.notes %>
+    </p>
+    <p class="mb-1">
+      Assigned to: <%= phone_call.user.name %>
+    </p>
+  </div>
   <% if action_name != "show" %>
-    <%#= link_to "Show this phone call", phone_call, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%#= link_to 'Edit this phone call', edit_phone_call_path(phone_call), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+  <div class="flex-initial">
+    <%= link_to "Update", edit_phone_call_path(phone_call), class: "bg-yellow-200 border border-yellow 300 rounded-lg px-3 py-4" %>
+  </div>
   <% end %>
 </div>
