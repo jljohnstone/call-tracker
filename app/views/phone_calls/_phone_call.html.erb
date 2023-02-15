@@ -3,15 +3,19 @@
     <p class="text-xl font-bold mb-1">
       <%= phone_call.customer.name %>
     </p>
-    <p class=" mb-1">
-      <%= phone_to phone_call.customer.phone_number, class: "bg-gray-200 border-gray-300 border text-gray-800 px-2 py-1 text-sm rounded-sm" %>
+    <p class="mb-1 text-xs text-gray-700">
+      Logged: <%= phone_call.updated_at.strftime('%b %e, %l:%M %p') %>
     </p>
-    <p class=" mb-1">
-      <%= phone_call.notes %>
-    </p>
-    <p class="mb-1">
+    <p class="mb-1 text-xs text-gray-700">
       Assigned to: <%= phone_call.user.name %>
     </p>
+    <p class="mb-1">
+      <%= phone_to phone_call.customer.phone_number, class: "underline text-blue-600" %>
+    </p>
+    <p class="mb-1">
+      <%= phone_call.notes %>
+    </p>
+
   </div>
   <% if action_name != "show" %>
   <div class="flex-initial">
