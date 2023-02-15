@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  subject { build(:user) }
+RSpec.describe Customer, type: :model do
+  subject { create(:customer) }
 
   describe "validations" do
-
     it "has a valid factory" do
       is_expected.to be_valid
     end
@@ -14,8 +13,8 @@ RSpec.describe User, type: :model do
       is_expected.to be_invalid
     end
 
-    it "is invalid without a properly formatted email address" do
-      subject.email = "notreal"
+    it "is invalid without a phone number" do
+      subject.phone_number = ""
       is_expected.to be_invalid
     end
   end
