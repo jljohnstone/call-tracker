@@ -42,7 +42,7 @@ class PhoneCallsController < ApplicationController
   def update
     respond_to do |format|
       if @phone_call.update(phone_call_params)
-        format.html { redirect_to phone_call_url(@phone_call), notice: "Phone call was successfully updated." }
+        format.html { redirect_to phone_calls_url, notice: "Phone call was successfully updated." }
         format.json { render :show, status: :ok, location: @phone_call }
       else
         format.html { render :edit, status: :unprocessable_entity }
