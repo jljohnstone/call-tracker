@@ -1,5 +1,5 @@
 class Note < ApplicationRecord
-  belongs_to :phone_call
-  has_one :customer, through: :phone_call
+  belongs_to :customer
+  belongs_to :user, optional: true
   validates :content, presence: true
 end
