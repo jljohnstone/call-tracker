@@ -17,6 +17,11 @@ RSpec.describe Customer, type: :model do
       subject.phone_number = ""
       is_expected.to be_invalid
     end
+
+    it "is invalid if the phone number is the wrong format" do
+      subject.phone_number = "(123) 123-1234"
+      is_expected.to be_invalid
+    end
   end
 
 end

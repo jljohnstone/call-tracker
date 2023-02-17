@@ -1,5 +1,15 @@
 <%= form_with(model: note, class: "contents") do |form| %>
-  <% if note.errors.any? %>
+  <% if note.customer.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(note.customer.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+        <% note.customer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% elsif note.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
 
