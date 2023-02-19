@@ -5,33 +5,38 @@
     <%= render 'errors', object: note %>
   <% end %>
 
-  <div>
-    <%= form.label :content %>
-    <%= form.text_area :content, rows: 4 %>
-  </div>
 
   <%= form.fields_for :customer do |customer| %>
-  <div>
-    <%= customer.label :phone_number %>
-    <%= customer.telephone_field :phone_number %>
+  <div class="form-control w-full my-3">
+    <%= customer.label :phone_number, "Customer phone", class: "label label-text" %>
+    <%= customer.telephone_field :phone_number, class: "input input-bordered" %>
   </div>
-  <div>
-    <%= customer.label :name %>
-    <%= customer.text_field :name %>
+
+  <div class="form-control w-full my-3">
+    <%= customer.label :name, "Customer name", class: "label label-text" %>
+    <%= customer.text_field :name, class: "input input-bordered" %>
   </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id %>
-    <%= form.collection_select :user_id, User.order(:name), :id, :name, { include_blank: true } %>
+  <div class="form-control w-full my-3">
+    <%= form.label :content, "Call notes", class: "label label-text" %>
+    <%= form.text_area :content, rows: 4, class: "textarea textarea-bordered" %>
   </div>
 
-  <div>
-    <%= form.label :done %>
-    <%= form.check_box :done %>
+  <div class="form-control w-full my-3">
+    <%= form.label :user_id, "Assign to", class: "label label-text" %>
+    <%= form.collection_select :user_id, User.order(:name), :id, :name, { include_blank: true }, { class: "select select-bordered" } %>
   </div>
 
-  <div class="inline">
-    <%= form.submit %>
+  <div class="form-control w-32 my-3">
+    <%= form.label :done, class: "label cursor-pointer" do %>
+      <span class="label-text">Done</span>
+      <%= form.check_box :done, class: "checkbox" %>
+    <% end %>
+  </div>
+
+  <div class="flex gap-3">
+    <%= form.submit class: "flex-auto btn btn-primary" %>
+    <%= link_to "Cancel", :back, class: "flex-initial btn", confirm: {"you sure?"} %>
   </div>
 <% end %>

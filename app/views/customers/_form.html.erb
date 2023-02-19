@@ -2,12 +2,12 @@
   <%= render 'errors', object: customer %>
   <div>
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "input w-full max-w-xs" %>
   </div>
 
   <div>
     <%= form.label :phone_number %>
-    <%= form.text_field :phone_number %>
+    <%= form.text_field :phone_number, class: "input w-full max-w-xs" %>
   </div>
 
   <div class="inline">
