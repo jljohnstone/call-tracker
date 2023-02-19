@@ -1,17 +1,21 @@
 <div id="<%= dom_id customer %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+  <p>
     <%= customer.name %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Phone number:</strong>
+  <p>
     <%= customer.phone_number %>
   </p>
 
+  <% customer.notes.each do |note| %>
+  <p>
+    <%= note.created_at %><br>
+    <%= note.content %>
+  </p>
+  <% end %>
+
   <% if action_name != "show" %>
-    <%= link_to "Show this customer", customer, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this customer', edit_customer_path(customer), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+    <%= link_to "Show this customer", customer %>
+    <%= link_to 'Edit this customer', edit_customer_path(customer) %>
   <% end %>
 </div>
