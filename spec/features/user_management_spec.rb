@@ -12,11 +12,11 @@ RSpec.feature "User Management", type: :feature do
   scenario "can update a user" do
     user = create(:user)
     visit edit_user_path(user)
-    fill_in "Name", with: "Steve"
-    fill_in "Email", with: "steve@example.com"
+    fill_in "Name", with: user.name
+    fill_in "Email", with: user.email
     click_button "Update"
     expect(page).to have_content("User was successfully updated")
-    expect(User.last.name).to eq("Steve")
-    expect(User.last.email).to eq("steve@example.com")
+    expect(User.last.name).to eq(user.name)
+    expect(User.last.email).to eq(user.email)
   end
 end

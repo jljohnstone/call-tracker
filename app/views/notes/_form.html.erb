@@ -21,25 +21,30 @@
     </div>
   <% end %>
 
-  <div class="my-5">
+  <div>
     <%= form.label :content %>
     <%= form.text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <%= form.fields_for :customer do |customer| %>
-  <div class="my-5">
+  <div>
     <%= customer.label :phone_number %>
     <%= customer.telephone_field :phone_number %>
   </div>
-  <div class="my-5">
+  <div>
     <%= customer.label :name %>
     <%= customer.text_field :name %>
   </div>
   <% end %>
 
-  <div class="my-5">
+  <div>
     <%= form.label :user_id %>
     <%= form.collection_select :user_id, User.order(:name), :id, :name, { include_blank: true } %>
+  </div>
+
+  <div>
+    <%= form.label :done %>
+    <%= form.check_box :done %>
   </div>
 
   <div class="inline">

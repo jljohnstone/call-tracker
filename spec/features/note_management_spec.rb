@@ -24,4 +24,13 @@ RSpec.feature "Note Management", type: :feature do
     expect(page).to have_content("Note was successfully created")
     expect(Customer.count).to eq(customer_count)
   end
+
+  scenario "can mark a note as done" do
+    note = create(:note)
+    visit edit_note_path(note)
+    check "Done"
+    click_button "Update"
+    expect(page).to have_content("Note was successfully updated")
+    expect(Note.last.done?).to eq(true)
+  end
 end

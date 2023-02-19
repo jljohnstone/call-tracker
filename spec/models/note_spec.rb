@@ -23,4 +23,10 @@ RSpec.describe Note, type: :model do
       is_expected.to be_valid
     end
   end
+
+  describe "default values" do
+    it "is not done by default" do
+      expect(subject.done?).to eq(false)
+    end
+  end
 end
