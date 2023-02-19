@@ -11,7 +11,8 @@
     <%= form.text_field :email %>
   </div>
 
-  <div class="inline">
-    <%= form.submit %>
+  <div>
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", :back, class: "btn" %>
   </div>
 <% end %>
