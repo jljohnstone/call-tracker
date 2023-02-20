@@ -5,9 +5,9 @@ RSpec.feature "Note Management", type: :feature do
     note = build(:note)
     customer = build(:customer)
     visit new_note_path
-    fill_in "Content", with: note.content
-    fill_in "Phone number", with: customer.phone_number
-    fill_in "Name", with: customer.name
+    fill_in "Call notes", with: note.content
+    fill_in "Customer phone", with: customer.phone_number
+    fill_in "Customer name", with: customer.name
     click_button "Create"
     expect(page).to have_content("Note was successfully created")
   end
@@ -17,9 +17,9 @@ RSpec.feature "Note Management", type: :feature do
     customer = create(:customer)
     customer_count = Customer.count
     visit new_note_path
-    fill_in "Content", with: note.content
-    fill_in "Phone number", with: customer.phone_number
-    fill_in "Name", with: customer.name
+    fill_in "Call notes", with: note.content
+    fill_in "Customer phone", with: customer.phone_number
+    fill_in "Customer name", with: customer.name
     click_button "Create"
     expect(page).to have_content("Note was successfully created")
     expect(Customer.count).to eq(customer_count)
