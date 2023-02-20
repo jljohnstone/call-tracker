@@ -3,8 +3,10 @@
     <p class="font-bold text-2xl"><%= customer.name %></p>
     <p><%= customer.phone_number %></p>
   </div>
-  <div class="border-y divide-y" data-controller="customer">
-    <% customer.notes.order(created_at: :desc).each_with_index do |note, index| %>
+  <p><%= customer.notes.latest.created_at.strftime("%m/%d/%y - %l:%M %P") %></p>
+  <p><%= customer.notes.latest.content %></p>
+  <div class="border-y divide-y" data-controller="">
+    <% customer.notes.all_but_latest.each_with_index do |note, index| %>
     <div tabindex="<%= index %>" class="collapse collapse-arrow group">
       <div class="collapse-title">
         <%= note.created_at.strftime("%m/%d/%y - %l:%M %P") %>
