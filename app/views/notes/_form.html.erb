@@ -7,19 +7,21 @@
 
 
   <%= form.fields_for :customer do |customer| %>
-  <div class="form-control w-full my-3">
-    <%= customer.label :phone_number, "Customer phone", class: "label label-text" %>
-    <%= customer.telephone_field :phone_number, list: "customer-phone-number", class: "input input-bordered" %>
-    <datalist id="customer-phone-number">
-    <% Customer.all.each do |customer| %>
-      <option value="<%= customer.phone_number %>"><%= customer.name %></option>
-    <% end %>
-    </datalist>
-  </div>
+  <div data-controller="note">
+    <div class="form-control w-full my-3">
+      <%= customer.label :phone_number, "Customer phone", class: "label label-text" %>
+      <%= customer.telephone_field :phone_number, list: "customer-phone-number", data: { note_target: "number", action: "change->note#setName click->note#clearFields" }, class: "input input-bordered" %>
+      <datalist id="customer-phone-number">
+      <% Customer.all.each do |customer| %>
+        <option value="<%= customer.phone_number %>"><%= customer.name %></option>
+      <% end %>
+      </datalist>
+    </div>
 
-  <div class="form-control w-full my-3">
-    <%= customer.label :name, "Customer name", class: "label label-text" %>
-    <%= customer.text_field :name, class: "input input-bordered" %>
+    <div class="form-control w-full my-3">
+      <%= customer.label :name, "Customer name", class: "label label-text" %>
+      <%= customer.text_field :name, data: { note_target: "name" }, class: "input input-bordered" %>
+    </div>
   </div>
   <% end %>
 

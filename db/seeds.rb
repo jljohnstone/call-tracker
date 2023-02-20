@@ -9,3 +9,8 @@
 User.create(first_name: "Jason", last_name: "Robertson", email: "jason@example.com")
 User.create(first_name: "Joel", last_name: "Miller", email: "joel@example.com")
 User.create(first_name: "Makayla", last_name: "Hill", email: "makayla@example.com")
+
+10.times do
+  timestamp = DateTime.now - (rand * 21)
+  FactoryBot.create(:note, user: User.all.sample, created_at: timestamp, updated_at: timestamp)
+end

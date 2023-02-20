@@ -1,21 +1,18 @@
 <div id="<%= dom_id customer %>">
-  <p>
-    <%= customer.name %>
-  </p>
-
-  <p>
-    <%= customer.phone_number %>
-  </p>
-
-  <% customer.notes.each do |note| %>
-  <p>
-    <%= note.created_at %><br>
-    <%= note.content %>
-  </p>
-  <% end %>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this customer", customer %>
-    <%= link_to 'Edit this customer', edit_customer_path(customer) %>
-  <% end %>
+  <div class="mb-6">
+    <p class="font-bold text-2xl"><%= customer.name %></p>
+    <p><%= customer.phone_number %></p>
+  </div>
+  <div class="border-y divide-y" data-controller="customer">
+    <% customer.notes.order(created_at: :desc).each_with_index do |note, index| %>
+    <div tabindex="<%= index %>" class="collapse collapse-arrow group">
+      <div class="collapse-title">
+        <%= note.created_at.strftime("%m/%d/%y - %l:%M %P") %>
+      </div>
+      <div class="collapse-content">
+        <p><%= note.content %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>

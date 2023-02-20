@@ -1,12 +1,8 @@
 <div>
   <div>
-
     <%= render @customer %>
-
-    <%= link_to 'Edit this customer', edit_customer_path(@customer) %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this customer', customer_path(@customer), method: :delete %>
-    </div>
-    <%= link_to 'Back to customers', customers_path %>
+  </div>
+  <div>
+    <%= link_to "Add Note", "#", class: "btn" %>
   </div>
 </div>
