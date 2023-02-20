@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   # GET /notes or /notes.json
   def index
-    @notes = Note.all
+    @notes = Note.includes(:customer, :user).order(created_at: :asc)
   end
 
   # GET /notes/1 or /notes/1.json

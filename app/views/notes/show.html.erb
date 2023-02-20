@@ -1,13 +1,12 @@
 <div>
-  <div>
+  <div class="flex justify-between items-center border-b-2 pb-3 gap-6">
+    <h1 class="font-bold text-2xl flex-initial">Call Note <%= @note.id %></h1>
+  </div>
 
+  <%= render @note %>
 
-    <%= render @note %>
-
-    <%= link_to 'Edit this note', edit_note_path(@note) %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this note', note_path(@note), method: :delete %>
-    </div>
-    <%= link_to 'Back to notes', notes_path %>
+  <div class="flex gap-3">
+    <%= link_to 'Edit this note', edit_note_path(@note), class: "flex-auto btn btn-primary" %>
+    <%= link_to "Cancel", :back, class: "flex-initial btn" %>
   </div>
 </div>

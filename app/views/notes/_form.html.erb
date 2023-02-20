@@ -9,7 +9,12 @@
   <%= form.fields_for :customer do |customer| %>
   <div class="form-control w-full my-3">
     <%= customer.label :phone_number, "Customer phone", class: "label label-text" %>
-    <%= customer.telephone_field :phone_number, class: "input input-bordered" %>
+    <%= customer.telephone_field :phone_number, list: "customer-phone-number", class: "input input-bordered" %>
+    <datalist id="customer-phone-number">
+    <% Customer.all.each do |customer| %>
+      <option value="<%= customer.phone_number %>"><%= customer.name %></option>
+    <% end %>
+    </datalist>
   </div>
 
   <div class="form-control w-full my-3">
@@ -25,7 +30,7 @@
 
   <div class="form-control w-full my-3">
     <%= form.label :user_id, "Assign to", class: "label label-text" %>
-    <%= form.collection_select :user_id, User.order(:name), :id, :name, { include_blank: true }, { class: "select select-bordered" } %>
+    <%= form.collection_select :user_id, User.order(:first_name), :id, :first_name, { include_blank: true }, { class: "select select-bordered" } %>
   </div>
 
   <div class="form-control w-32 my-3">

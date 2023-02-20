@@ -1,11 +1,7 @@
 <div>
-  <% if notice.present? %>
-    <p id="notice"><%= notice %></p>
-  <% end %>
-
-  <div>
-    <h1>Notes</h1>
-    <%= link_to 'New note', new_note_path %>
+  <div class="flex justify-between items-center border-b-2 pb-3 gap-6">
+    <h1 class="font-bold text-2xl flex-initial">Call List</h1>
+    <%= link_to 'New call note', new_note_path, class: "btn flex-auto" %>
   </div>
 
   <div id="notes">
