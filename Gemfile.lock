@@ -46,8 +46,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_record_distinct_on (1.4.0)
-      activerecord (>= 5.2, < 7.1)
     activejob (7.0.4.2)
       activesupport (= 7.0.4.2)
       globalid (>= 0.3.6)
@@ -266,7 +264,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  active_record_distinct_on
   bootsnap
   capybara
   debug
