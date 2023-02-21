@@ -3,18 +3,14 @@
     <p class="font-bold text-2xl"><%= customer.name %></p>
     <p><%= customer.phone_number %></p>
   </div>
-  <p><%= customer.notes.latest.created_at.strftime("%m/%d/%y - %l:%M %P") %></p>
-  <p><%= customer.notes.latest.content %></p>
-  <div class="border-y divide-y" data-controller="">
-    <% customer.notes.all_but_latest.each_with_index do |note, index| %>
-    <div tabindex="<%= index %>" class="collapse collapse-arrow group">
-      <div class="collapse-title">
-        <%= note.created_at.strftime("%m/%d/%y - %l:%M %P") %>
-      </div>
-      <div class="collapse-content">
-        <p><%= note.content %></p>
-      </div>
-    </div>
+  <p class="font-bold text-lg">Latest note:</p>
+  <%= render partial: "customers/note", locals: { note: @latest_note } %>
+  <% if @all_but_latest_note.any? %>
+  <p class="font-bold text-lg">History:</p>
+    <div class="divide-y">
+    <% @all_but_latest_note.each do |note| %>
+      <%= render partial: "customers/note", locals: { note: note } %>
     <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

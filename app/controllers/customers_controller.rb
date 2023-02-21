@@ -8,6 +8,8 @@ class CustomersController < ApplicationController
 
   # GET /customers/1 or /customers/1.json
   def show
+    @latest_note = @customer.notes.latest
+    @all_but_latest_note = @customer.notes.all_but_latest
   end
 
   # GET /customers/new

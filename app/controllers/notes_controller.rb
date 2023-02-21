@@ -3,7 +3,15 @@ class NotesController < ApplicationController
 
   # GET /notes or /notes.json
   def index
-    @notes = Note.includes(:customer, :user)
+    @notes = Note.find_by_sql("
+      SELECT * FROM (
+        SELECT DISTINCT ON (customer_id) *
+        FROM notes
+        WHERE NOT done
+        ORDER BY customer_id
+      ) AS newest_undone_note_per_customer
+      ORDER BY created_at asc
+    ")
   end
 
   # GET /notes/1 or /notes/1.json
@@ -71,6 +79,6 @@ class NotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.require(:note).permit(:content, :user_id, :done, customer_attributes: [:phone_number, :name])
+      params.require(:note).permit(:content, :user_id, :done, customer_attributes: [:id, :phone_number, :name])
     end
 end
