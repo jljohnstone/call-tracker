@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
 
-  def initials
-    "#{first_name[0]}#{last_name[0]}".upcase
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end

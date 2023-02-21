@@ -32,7 +32,7 @@
 
   <div class="form-control w-full my-3">
     <%= form.label :user_id, "Assign to", class: "label label-text" %>
-    <%= form.collection_select :user_id, User.order(:first_name), :id, :first_name, { include_blank: true }, { class: "select select-bordered" } %>
+    <%= form.collection_select :user_id, User.order(:first_name), :id, :full_name, { include_blank: true }, { class: "select select-bordered" } %>
   </div>
 
   <div class="form-control w-32 my-3">
@@ -44,6 +44,6 @@
 
   <div class="flex gap-3">
     <%= form.submit class: "flex-auto btn btn-primary" %>
-    <%= link_to "Cancel", :back, class: "flex-initial btn" %>
+    <%= link_to "Cancel", :back, class: "flex-initial btn btn-secondary" %>
   </div>
 <% end %>

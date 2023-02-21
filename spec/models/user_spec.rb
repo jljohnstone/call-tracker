@@ -21,12 +21,4 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "methods" do
-    it ".initials returns the first and last initial" do
-      subject.first_name = "Ken"
-      subject.last_name = "Smith"
-      expect(subject.initials).to eq("KS")
-    end
-  end
-
 end

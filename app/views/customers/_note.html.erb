@@ -1,7 +1,10 @@
-<%= link_to edit_note_path(note), class: "flex justify-between items-center gap-3 mb-6" do %>
+<%= link_to edit_note_path(note), class: "flex-auto flex justify-between items-center gap-3 py-3" do %>
     <div class="flex-auto">
       <p><%= note.created_at.strftime("%m/%d/%y - %l:%M %P") %></p>
       <p><%= note.content %></p>
+      <% if note.done? %>
+        <p class="gray-700 text-sm italic">last updated <%= note.updated_at.strftime("%m/%d/%y - %l:%M %P")%>
+      <% end %>
     </div>
     <div class="flex-initial">
       <div class="btn btn-square btn-outline btn-sm btn-secondary">
