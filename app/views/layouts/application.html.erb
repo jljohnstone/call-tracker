@@ -12,19 +12,19 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container p-3 mb-16">
       <%= yield %>
+      <% if signed_in? %>
+        <%= current_user.email %>
+        <%= button_to "Sign out", sign_out_path, method: :delete, class: "btn btn-accent btn-sm" %>
+      <% else %>
+        <%= link_to "Sign in", sign_in_path %>
+      <% end %>
     </main>
     <div id="flash">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>
       <% end %>
     </div>
-    <% if signed_in? %>
-      <%= current_user.email %>
-      <%= button_to "Sign out", sign_out_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign in", sign_in_path %>
-    <% end %>
   </body>
 </html>
