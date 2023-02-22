@@ -2,6 +2,6 @@
   <%= tag.div data: { controller: "turbo-modal" }, class: "p-5 bg-slate-300 absolute z-10 top-10 right-10 rounded-md break-words" do %>
     <h1 class="font-bold text-4xl"><%= @title %></h1>
     <%= content %>
-    <%= button_tag "Cancel", data: { action: "turbo-modal#hide" }, type: :button, class: "btn btn-secondary" %>
+    <%= button_tag "Cancel", data: { action: "turbo-modal#hide" }, type: :button, class: "btn btn-ghost" %>
   <% end %>
 <% end %>
