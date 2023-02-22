@@ -117,9 +117,6 @@ GEM
     importmap-rails (1.1.5)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
-    io-console (0.6.0)
-    irb (1.6.2)
-      reline (>= 0.3.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -199,8 +196,6 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.7.0)
-    reline (0.3.2)
-      io-console (~> 0.5)
     rexml (3.2.5)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
@@ -276,12 +271,10 @@ DEPENDENCIES
   ffaker
   guard-rspec
   importmap-rails
-  irb
   jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
-  reline
   rspec-rails
   selenium-webdriver
   sprockets-rails
