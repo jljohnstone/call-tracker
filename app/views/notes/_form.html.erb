@@ -1,0 +1,37 @@
+<%= form_with(model: note, class: "contents", data: { turbo_confirm: 'Are you sure?' }, html: { autocomplete: :off }) do |form| %>
+  <% if note.errors.any? %>
+    <%= render 'errors', object: note %>
+  <% end %>
+
+
+  <div class="form-control w-full my-3">
+    <%= form.label :customer_id, class: "label label-text" %>
+    <%= form.collection_select :customer_id, Customer.order(:name), :id, :name, { include_blank: true }, { class: "select select-bordered" } %>
+  </div>
+
+  <div>
+    <%= link_to "Add customer", new_customer_path, data: { turbo_frame: "modal" }, class: "btn btn-secondary" %>
+  </div>
+
+  <div class="form-control w-full my-3">
+    <%= form.label :content, "Call notes", class: "label label-text" %>
+    <%= form.text_area :content, rows: 4, class: "textarea textarea-bordered" %>
+  </div>
+
+  <div class="form-control w-full my-3">
+    <%= form.label :user_id, "Assign to", class: "label label-text" %>
+    <%= form.collection_select :user_id, User.order(:first_name), :id, :full_name, { include_blank: true }, { class: "select select-bordered" } %>
+  </div>
+
+  <div class="form-control w-32 my-3">
+    <%= form.label :completed, class: "label cursor-pointer" do %>
+      <span class="label-text">Completed</span>
+      <%= form.check_box :completed, class: "checkbox" %>
+    <% end %>
+  </div>
+
+  <div class="flex gap-3">
+    <%= form.submit class: "flex-auto btn btn-primary" %>
+    <%= link_to "Cancel", :back, class: "flex-initial btn btn-secondary" %>
+  </div>
+<% end %>
