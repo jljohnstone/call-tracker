@@ -17,7 +17,6 @@ export default class extends Controller {
   }
 
   clearFields() {
-    console.log('clearing')
     this.numberTarget.value = ""
     this.nameTarget.value = ""
   }

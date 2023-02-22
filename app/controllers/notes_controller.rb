@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   # GET /notes or /notes.json
   def index
-    @notes = Note.find_by_sql("SELECT customers.id, customers.name AS customer_name, users.first_name as user_first_name, users.last_name as user_last_name, newest_undone_note_per_customer.created_at, newest_undone_note_per_customer.user_id, newest_undone_note_per_customer.customer_id FROM customers INNER JOIN ( SELECT DISTINCT ON (customer_id) * FROM notes WHERE NOT done ORDER BY customer_id ) AS newest_undone_note_per_customer ON newest_undone_note_per_customer.customer_id = customers.id FULL OUTER JOIN users on newest_undone_note_per_customer.user_id = users.id ORDER BY newest_undone_note_per_customer.created_at asc")
+    @notes = Note.find_by_sql("SELECT * FROM ( SELECT DISTINCT ON (customer_id) * FROM notes WHERE NOT done ORDER BY customer_id ) AS newest_undone_note_per_customer ORDER BY created_at asc")
   end
 
   # GET /notes/1 or /notes/1.json
