@@ -4,13 +4,11 @@
   <% end %>
 
 
-  <div class="form-control w-full my-3">
+  <div class="form-control w-full my-3 flex">
     <%= form.label :customer_id, class: "label label-text" %>
-    <%= form.collection_select :customer_id, Customer.order(:name), :id, :name, { include_blank: true }, { class: "select select-bordered" } %>
-  </div>
+    <%= form.collection_select :customer_id, Customer.order(:name), :id, :number_and_name, { prompt: true }, { class: "select select-bordered mb-3" } %>
+    <%= link_to "Add new customer", new_customer_path, data: { turbo_frame: "modal" }, class: "btn btn-secondary w-1/2" %>
 
-  <div>
-    <%= link_to "Add customer", new_customer_path, data: { turbo_frame: "modal" }, class: "btn btn-secondary" %>
   </div>
 
   <div class="form-control w-full my-3">
