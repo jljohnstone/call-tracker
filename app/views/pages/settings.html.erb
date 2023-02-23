@@ -1,9 +1,14 @@
 <div>
-  <h1 class="font-bold text-2xl">Settings</h1>
-  <% if signed_in? %>
-    <%= current_user.email %>
-    <%= button_to "Sign out", sign_out_path, method: :delete, class: "btn btn-accent btn-sm" %>
-  <% else %>
-    <%= link_to "Sign in", sign_in_path %>
-  <% end %>
+  <h1 class="font-bold text-2xl">App Settings</h1>
+  <div class="flex gap-6 mt-6">
+    <%= link_to "Manage Users", users_path, class: "flex-auto btn" %>
+    <%= link_to "My Details", edit_user_path(current_user), class: "flex-auto btn" %>
+
+  </div>
+  <div class="flex flex-col gap-3 mt-20">
+    <p class="flex-auto">
+      Signed in as: <%= current_user.email %>
+    </p>
+    <%= button_to "Sign out", sign_out_path, method: :delete, class: "flex-none btn btn-accent btn-sm" %>
+  </div>
 </div>

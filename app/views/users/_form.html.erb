@@ -1,14 +1,6 @@
 <%= form_with(model: user, class: "contents") do |form| %>
   <% if user.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render 'errors', object: user %>
   <% end %>
 
   <div class="form-control w-full my-3">
@@ -21,15 +13,29 @@
     <%= form.text_field :last_name, class: "input input-bordered" %>
   </div>
 
+  <div class="form-control my-3">
+    <%= form.label :assignable, class: "label cursor-pointer" do %>
+      <span class="label-text">Can be assigned notes?</span>
+      <%= form.check_box :assignable, class: "checkbox" %>
+    <% end %>
+  </div>
+
+  <div class="form-control w-full my-3">
+    <%= form.label :time_zone, class: "label label-text" %>
+    <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { default: "Central Time (US & Canada)" }, { class: "select select-bordered" } %>
+  </div>
+
   <div class="form-control w-full my-3">
     <%= form.label :email, class: "label label-text" %>
     <%= form.email_field :email, class: "input input-bordered" %>
   </div>
 
-  <div class="form-control w-full my-3">
-    <%= form.label :password, class: "label label-text" %>
-    <%= form.password_field :password, class: "input input-bordered" %>
-  </div>
+  <% if action_name == "new" %>
+    <div class="form-control w-full my-3">
+      <%= form.label :password, class: "label label-text" %>
+      <%= form.password_field :password, class: "input input-bordered" %>
+    </div>
+  <% end %>
 
   <div class="flex gap-3">
     <%= form.submit class: "flex-auto btn btn-primary" %>

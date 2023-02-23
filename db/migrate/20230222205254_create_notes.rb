@@ -4,7 +4,7 @@ class CreateNotes < ActiveRecord::Migration[7.0]
       t.text :content
       t.boolean :completed, null: false, default: false
       t.belongs_to :customer, null: false, foreign_key: true
-      t.belongs_to :user#, null: false, foreign_key: true
+      t.belongs_to :user
 
       t.timestamps
     end

@@ -16,10 +16,10 @@
 
   <div class="form-control w-full my-3">
     <%= form.label :user_id, "Assign to", class: "label label-text" %>
-    <%= form.collection_select :user_id, User.order(:first_name), :id, :full_name, { include_blank: true }, { class: "select select-bordered" } %>
+    <%= form.collection_select :user_id, User.order(:first_name).where(assignable: true), :id, :full_name, { include_blank: true }, { class: "select select-bordered" } %>
   </div>
 
-  <div class="form-control w-32 my-3">
+  <div class="form-control my-3">
     <%= form.label :completed, class: "label cursor-pointer" do %>
       <span class="label-text">Completed</span>
       <%= form.check_box :completed, class: "checkbox" %>
