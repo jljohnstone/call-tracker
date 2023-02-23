@@ -12,8 +12,8 @@
   </head>
 
   <body>
+    <%= turbo_frame_tag "modal" %>
     <main class="container p-3 mb-16">
-      <%= turbo_frame_tag "modal" %>
       <%= yield %>
       <% if signed_in? %>
         <%= current_user.email %>
