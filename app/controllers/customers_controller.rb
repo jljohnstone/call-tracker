@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[ show edit update destroy ]
   before_action :ensure_frame_response, only: %i[ new edit ]
+  before_action :require_login
 
   # GET /customers or /customers.json
   def index
