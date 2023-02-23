@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :notes
   resources :customers
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
   root "pages#index"
+  get "/settings", to: "pages#settings"
+  get "/search", to: "pages#search"
 end

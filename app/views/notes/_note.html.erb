@@ -1,27 +1,13 @@
 <div id="<%= dom_id note %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Content:</strong>
-    <%= note.content %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Completed:</strong>
-    <%= note.completed %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Customer:</strong>
-    <%= note.customer_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= note.user_id %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this note", note, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this note', edit_note_path(note), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+  <%= link_to customer_path(note.customer), class: "flex justify-between items-center my-3 p-3 bg-base-200 rounded" do %>
+    <div class="flex-auto">
+      <p class="text-sm"><%= note.created_at.strftime("%m/%d/%y - %l:%M %P") %></p>
+      <p><%= note.customer.name %></p>
+    </div>
+    <div class="flex-initial text-right">
+    <% if note.user.present? %>
+      <p class="btn btn-outline btn-square btn-sm"><%= user_initials(note.user.first_name, note.user.last_name) %></p>
+    <% end %>
+    </div>
   <% end %>
 </div>

@@ -1,17 +1,14 @@
-<div id="<%= dom_id customer %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= customer.name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Phone number:</strong>
-    <%= customer.phone_number %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this customer", customer, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this customer', edit_customer_path(customer), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+<div id="<%= dom_id customer %>" data-controller="clipboard">
+  <div class="mb-6">
+    <p class="font-bold text-2xl"><%= customer.name %></p>
+    <div class="form-control">
+      <div class="input-group">
+        <%= text_field_tag :phone_number, customer.phone_number, {  readonly: true, class: "input input-bordered", data: { clipboard_target: :source } } %>
+        <%= button_tag "Copy", type: :button, class: "btn btn-secondary", data: { action: "clipboard#copy" } %>
+      </div>
+    </div>
+  </div>
+  <% @notes.each do |note| %>
+    <%= render partial: "customers/note", locals: { note: note } %>
   <% end %>
 </div>

@@ -9,6 +9,7 @@ class CustomersController < ApplicationController
 
   # GET /customers/1 or /customers/1.json
   def show
+    @notes = @customer.notes
   end
 
   # GET /customers/new
