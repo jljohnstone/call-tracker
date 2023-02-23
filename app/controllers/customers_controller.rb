@@ -9,7 +9,8 @@ class CustomersController < ApplicationController
 
   # GET /customers/1 or /customers/1.json
   def show
-    @notes = @customer.notes
+    @completed_notes = @customer.notes.where(completed: true)
+    @incompleted_notes = @customer.notes.where(completed: false)
   end
 
   # GET /customers/new

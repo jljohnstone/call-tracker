@@ -8,7 +8,20 @@
       </div>
     </div>
   </div>
-  <% @notes.each do |note| %>
-    <%= render partial: "customers/note", locals: { note: note } %>
+  <% if @incompleted_notes.any? %>
+    <h2 class="font-bold text-xl">Incomplete</h2>
+    <div class="flex flex-col divide-y">
+      <% @incompleted_notes.each do |note| %>
+        <%= render partial: "customers/note", locals: { note: note } %>
+      <% end %>
+    </div>
+  <% end %>
+  <% if @completed_notes.any? %>
+    <h2 class="font-bold text-xl mt-12">Completed</h2>
+    <div class="flex flex-col divide-y text-gray-500">
+      <% @completed_notes.each do |note| %>
+        <%= render partial: "customers/note", locals: { note: note } %>
+      <% end %>
+    </div>
   <% end %>
 </div>
