@@ -16,9 +16,9 @@
     <main class="container p-3 mb-16">
       <%= yield %>
     </main>
-    <div id="flash">
+    <div id="flash" class="toast toast-end z-20">
       <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
+        <div class="alert alert-success <%= key %>" data-controller="toast"><%= value %></div>
       <% end %>
     </div>
     <div class="btm-nav border-t">
