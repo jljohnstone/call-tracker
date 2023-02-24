@@ -6,4 +6,8 @@ class Customer < ApplicationRecord
   def number_and_name
     "#{phone_number}: #{name}"
   end
+
+  def name_and_number
+    "#{name}: #{phone_number}"
+  end
 end

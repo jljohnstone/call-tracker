@@ -1,5 +1,6 @@
 <div id="<%= dom_id user %>">
-  <div>
-    <%= link_to user.full_name, edit_user_path(user) %>
-  </div>
+  <%= link_to edit_user_path(user), class: "block my-3" do %>
+    <p class="font-bold underline"><%= user.full_name %></p>
+    <p><%= user.email %></p>
+  <% end %>
 </div>

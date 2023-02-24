@@ -1,11 +1,11 @@
 <div class="w-full">
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Users</h1>
-    <%= link_to 'New user', new_user_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="flex justify-between items-center border-b-2 pb-3 gap-6">
+    <h1 class="flex-initial font-bold text-2xl">Users</h1>
+    <%= link_to 'New user', new_user_path, class: "flex-auto btn btn-secondary" %>
   </div>
 
-  <div id="users" class="min-w-full">
+  <div id="users" class="">
     <%= render @users %>
   </div>
 </div>
