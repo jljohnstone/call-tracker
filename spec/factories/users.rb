@@ -4,5 +4,7 @@ FactoryBot.define do
     last_name { FFaker::Name.last_name }
     email { FFaker::Internet.email }
     password { SecureRandom.alphanumeric(12) }
+    time_zone { "UTC" }
+    assignable { true }
   end
 end

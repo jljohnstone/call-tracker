@@ -2,14 +2,14 @@
   <div class="mb-6">
     <p class="font-bold text-2xl"><%= customer.name %></p>
     <div class="form-control">
-      <div class="input-group">
-        <%= text_field_tag :phone_number, customer.phone_number, {  readonly: true, class: "input input-bordered", data: { clipboard_target: :source } } %>
-        <%= button_tag "Copy", type: :button, class: "btn btn-secondary", data: { action: "clipboard#copy" } %>
+      <div class="input-group input-group-sm">
+        <%= text_field_tag :phone_number, customer.phone_number, {  readonly: true, class: "input input-bordered input-sm", data: { clipboard_target: :source } } %>
+        <%= button_tag "Copy", type: :button, class: "btn btn-secondary btn-sm flex-grow", data: { action: "clipboard#copy" } %>
       </div>
     </div>
   </div>
   <% if @incompleted_notes.any? %>
-    <h2 class="font-bold text-xl">Incomplete</h2>
+    <h2 class="font-bold text-xl">Incompleted (<%= @incompleted_notes.count %>)</h2>
     <div class="flex flex-col divide-y">
       <% @incompleted_notes.each do |note| %>
         <%= render partial: "customers/note", locals: { note: note } %>
@@ -17,7 +17,7 @@
     </div>
   <% end %>
   <% if @completed_notes.any? %>
-    <h2 class="font-bold text-xl mt-12">Completed</h2>
+    <h2 class="font-bold text-xl mt-12">Completed (<%= @completed_notes.count %>)</h2>
     <div class="flex flex-col divide-y text-gray-500">
       <% @completed_notes.each do |note| %>
         <%= render partial: "customers/note", locals: { note: note } %>
