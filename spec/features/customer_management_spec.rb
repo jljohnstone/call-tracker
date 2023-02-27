@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Customer Management", type: :feature do
   scenario "can see a list of customers" do
+    sign_in
     3.times do |c|
       create(:customer)
     end
