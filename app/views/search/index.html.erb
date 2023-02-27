@@ -1,0 +1,15 @@
+<div>
+  <%= form_with url: "/search", method: :get do |form| %>
+    <%= form.text_field :q, value: params[:q] %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
+  <% end %>
+
+  <% if @results %>
+    <h2 class="font-bold text-2xl">Results (work in progress)</h2>
+    <% @results.each do |result| %>
+      <p><%= result.content %></p>
+      <p><%= result.searchable_type %> #<%= result.searchable_id %></p>
+    <% end %>
+  <% end %>
+
+</div>

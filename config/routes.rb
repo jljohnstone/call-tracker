@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   end
 
   get "/settings", to: "pages#settings"
-  get "/search", to: "pages#search"
+  get "/search", to: "search#index"
   root "pages#index"
 end
