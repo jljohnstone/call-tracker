@@ -1,0 +1,15 @@
+{
+  "background_color": "#66cc8a",
+  "description": "Outdoor Legacy Gear Call Notes",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "android-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "OLG Call Notes",
+  "short_name": "Calls",
+  "start_url": "/"
+}
