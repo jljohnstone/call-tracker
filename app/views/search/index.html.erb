@@ -7,8 +7,14 @@
   <% if @results %>
     <h2 class="font-bold text-2xl">Results (work in progress)</h2>
     <% @results.each do |result| %>
-      <p><%= result.content %></p>
-      <p><%= result.searchable_type %> #<%= result.searchable_id %></p>
+      <%
+        if result.searchable_type == "Customer"
+          show_path = customer_path(result.searchable_id)
+        elsif result.searchable_type == "Note"
+          show_path = note_path(result.searchable_id)
+        end
+      %>
+      <%= link_to result.content, show_path, class: "underline text-blue-500" %>
     <% end %>
   <% end %>
 
