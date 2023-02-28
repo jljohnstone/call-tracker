@@ -2,47 +2,47 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-// if ("serviceWorker" in navigator) {
-//   window.addEventListener("load", function() {
-//     this.navigator.serviceWorker.register("/service-worker.js", { scope: "/" } )
-//   })
-// }
-
-// const registerServiceWorker = async () => {
-//   if ("serviceWorker" in navigator) {
-//     try {
-//       const registration = await navigator.serviceWorker.register("/service-worker.js", {
-//         scope: "/",
-//       });
-//       if (registration.installing) {
-//         console.log("Service worker installing")
-//       } else if (registration.waiting) {
-//         console.log("Service worker installed")
-//       } else if (registration.active) {
-//         console.log("Service worker active")
-//       }
-//     } catch (error) {
-//       console.error(`Registration failed with ${error}`)
-//     }
-//   }
-// }
-
-// registerServiceWorker()
-
-const getNotificationsBtn = document.getElementById("get-notifications")
-getNotificationsBtn.addEventListener("click", () => {
-  Notification.requestPermission().then((result) => {
-    if (result === "granted") {
-      console.log("notification permission granted")
-      testNotification()
-    }
-  })
-})
-
-
-function testNotification() {
-  console.log("sending notification...")
-  new Notification("Notification Title", { body: "This is the body.", icon: "android-icon-192x192.png"})
-  console.log("...notifcation sent")
-  // setTimeout(testNotification, 30000)
+const check = () => {
+  if (!('serviceWorker' in navigator)) {
+    throw new Error('No Service Worker support!')
+  }
+  if (!('PushManager' in window)) {
+    throw new Error('No Push API Support!')
+  }
 }
+
+const registerServiceWorker = async () => {
+  const swRegistration = await navigator.serviceWorker.register('service-worker.js')
+  return swRegistration
+}
+
+const requestNotificationPermission = async () => {
+  const permission = await window.Notification.requestPermission()
+  // value of permission can be 'granted', 'default', 'denied'
+  // granted: user has accepted the request
+  // default: user has dismissed the notification permission popup by clicking on x
+  // denied: user has denied the request.
+  if (permission !== 'granted') {
+    throw new Error('Permission not granted for Notification')
+  }
+}
+
+const showLocalNotification = (title, body, swRegistration) => {
+  const options = {
+    "body": body
+    // here you can add more properties like icon, image, vibrate, etc.
+  };
+  swRegistration.showNotification(title, options);
+}
+
+const main = async () => {
+  check()
+  const swRegistration = await registerServiceWorker()
+  const permission = await requestNotificationPermission()
+  showLocalNotification('This is title', 'this is the message', swRegistration);
+}
+
+const permissionBtn = document.getElementById("permission-btn")
+permissionBtn.addEventListener("click", main)
+
+//main(); //we will not call main in the beginning.

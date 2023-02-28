@@ -3,7 +3,7 @@
   <div class="flex gap-6 mt-6">
     <%= link_to "Manage Users", users_path, class: "flex-auto btn" %>
     <%= link_to "My Details", edit_user_path(current_user), class: "flex-auto btn" %>
-    <%= link_to "Receive Notifications", "#", id: "get-notifications" %>
+    <%= button_tag "Receive Notifications", type: "button", id: "permission-btn", class: "btn" %>
 
   </div>
   <div class="flex flex-col gap-3 mt-20">
