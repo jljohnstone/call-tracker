@@ -2,8 +2,22 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
-    this.navigator.serviceWorker.register("/service-worker.js", { scope: "/" } )
+// if ("serviceWorker" in navigator) {
+//   window.addEventListener("load", function() {
+//     this.navigator.serviceWorker.register("/service-worker.js", { scope: "/" } )
+//   })
+// }
+
+// const button = document.getElementById("notifications")
+// button.addEventListener("click", () => {
+  Notification.requestPermission().then((result) => {
+    if (result === "granted") {
+      console.log("notification permission granted")
+      testNotification()
+    }
   })
+// })
+
+function testNotification() {
+  new Notification("Notification Title", { body: "This is the body.", icon: "android-icon-192x192.png"})
 }
