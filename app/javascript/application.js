@@ -19,5 +19,8 @@ import "controllers"
 // })
 
 function testNotification() {
+  console.log("sending notification...")
   new Notification("Notification Title", { body: "This is the body.", icon: "android-icon-192x192.png"})
+  console.log("...notifcation sent")
+  setTimeout(testNotification, 30000)
 }
