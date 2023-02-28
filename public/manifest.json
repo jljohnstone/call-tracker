@@ -1,7 +1,7 @@
 {
   "background_color": "#66cc8a",
   "description": "Outdoor Legacy Gear Call Notes",
-  "display": "fullscreen",
+  "display": "standalone",
   "icons": [
     {
       "src": "android-icon-192x192.png",
