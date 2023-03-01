@@ -2,48 +2,67 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-const check = () => {
-  if (!('serviceWorker' in navigator)) {
-    throw new Error('No Service Worker support!')
-  }
-  if (!('PushManager' in window)) {
-    throw new Error('No Push API Support!')
+const notificationButton = document.getElementById("enablenotifications");
+let swRegistration = null;
+
+initializeApp();
+
+function initializeApp() {
+
+  if ("serviceWorker" in navigator && "PushManager" in window) {
+    console.log("Service Worker and Push is supported");
+
+    //Register the service worker
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then(swReg => {
+        console.log("Service Worker is registered", swReg);
+
+        swRegistration = swReg;
+        initializeUi();
+      })
+      .catch(error => {
+        console.error("Service Worker Error", error);
+      });
+  } else {
+    console.warn("Push messaging is not supported");
+    notificationButton.textContent = "Push Not Supported";
   }
 }
 
-const registerServiceWorker = async () => {
-  const swRegistration = await navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
-  return swRegistration
+function initializeUi() {
+  notificationButton.addEventListener("click", () => {
+    displayNotification();
+  });
 }
 
-const swRegistration = await registerServiceWorker()
-
-const requestNotificationPermission = async () => {
-  const permission = await window.Notification.requestPermission()
-  // value of permission can be 'granted', 'default', 'denied'
-  // granted: user has accepted the request
-  // default: user has dismissed the notification permission popup by clicking on x
-  // denied: user has denied the request.
-  if (permission !== 'granted') {
-    throw new Error('Permission not granted for Notification')
+function displayNotification() {
+  if (window.Notification && Notification.permission === "granted") {
+    notification();
+  }
+  // If the user hasn't told if he wants to be notified or not
+  // Note: because of Chrome, we are not sure the permission property
+  // is set, therefore it's unsafe to check for the "default" value.
+  else if (window.Notification && Notification.permission !== "denied") {
+    Notification.requestPermission(status => {
+      if (status === "granted") {
+        notification();
+      } else {
+        alert("You denied or dismissed permissions to notifications.");
+      }
+    });
+  } else {
+    // If the user refuses to get notified
+    alert(
+      "You denied permissions to notifications. Please go to your browser or phone setting to allow notifications."
+    );
   }
 }
 
-const showLocalNotification = (title, body, swRegistration) => {
+function notification() {
   const options = {
-    "body": body
-    // here you can add more properties like icon, image, vibrate, etc.
+    body: "Testing Our Notification",
+    icon: "/favicon-32x32.png"
   };
-  swRegistration.showNotification(title, options);
+  swRegistration.showNotification("PWA Notification!", options);
 }
-
-const main = async () => {
-  check()
-  const permission = await requestNotificationPermission()
-  showLocalNotification('This is title', 'this is the message', swRegistration);
-}
-
-const permissionBtn = document.getElementById("permission-btn")
-permissionBtn.addEventListener("click", main)
-
-//main(); //we will not call main in the beginning.
