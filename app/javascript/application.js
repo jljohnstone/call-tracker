@@ -16,6 +16,8 @@ const registerServiceWorker = async () => {
   return swRegistration
 }
 
+const swRegistration = await registerServiceWorker()
+
 const requestNotificationPermission = async () => {
   const permission = await window.Notification.requestPermission()
   // value of permission can be 'granted', 'default', 'denied'
@@ -37,7 +39,6 @@ const showLocalNotification = (title, body, swRegistration) => {
 
 const main = async () => {
   check()
-  const swRegistration = await registerServiceWorker()
   const permission = await requestNotificationPermission()
   showLocalNotification('This is title', 'this is the message', swRegistration);
 }
