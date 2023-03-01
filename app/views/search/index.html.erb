@@ -6,6 +6,7 @@
 
   <% if @results %>
     <h2 class="font-bold text-2xl">Results (work in progress)</h2>
+    <ul>
     <% @results.each do |result| %>
       <%
         if result.searchable_type == "Customer"
@@ -14,8 +15,9 @@
           show_path = note_path(result.searchable_id)
         end
       %>
-      <%= link_to result.content, show_path, class: "underline text-blue-500" %>
+      <li><%= link_to result.content, show_path, class: "underline text-blue-500" %></li>
     <% end %>
+    </ul>
   <% end %>
 
 </div>
