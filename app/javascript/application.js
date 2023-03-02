@@ -2,67 +2,69 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-const notificationButton = document.getElementById("enablenotifications");
+//register service worker
 let swRegistration = null;
-
-initializeApp();
-
-function initializeApp() {
-
-  if ("serviceWorker" in navigator && "PushManager" in window) {
-    console.log("Service Worker and Push is supported");
-
-    //Register the service worker
-    navigator.serviceWorker
-      .register("/service-worker.js")
-      .then(swReg => {
-        console.log("Service Worker is registered", swReg);
-
-        swRegistration = swReg;
-        initializeUi();
-      })
-      .catch(error => {
-        console.error("Service Worker Error", error);
-      });
-  } else {
-    console.warn("Push messaging is not supported");
-    notificationButton.textContent = "Push Not Supported";
-  }
-}
-
-function initializeUi() {
-  notificationButton.addEventListener("click", () => {
-    displayNotification();
-  });
-}
-
-function displayNotification() {
-  if (window.Notification && Notification.permission === "granted") {
-    notification();
-  }
-  // If the user hasn't told if he wants to be notified or not
-  // Note: because of Chrome, we are not sure the permission property
-  // is set, therefore it's unsafe to check for the "default" value.
-  else if (window.Notification && Notification.permission !== "denied") {
-    Notification.requestPermission(status => {
-      if (status === "granted") {
-        notification();
-      } else {
-        alert("You denied or dismissed permissions to notifications.");
-      }
+if ("serviceWorker" in navigator && "PushManager" in window) {
+  // console.log("Service Worker and Push is supported");
+  navigator.serviceWorker
+  .register("/service-worker.js")
+  .then(swReg => {
+      // console.log("Service Worker is registered", swReg);
+      swRegistration = swReg;
+    })
+    .catch(error => {
+      console.error("Service Worker Error", error);
     });
   } else {
-    // If the user refuses to get notified
-    alert(
-      "You denied permissions to notifications. Please go to your browser or phone setting to allow notifications."
-    );
+    console.warn("Push messaging is not supported");
+  }
+
+//find enable notifications button
+const enableNotificationsButton = document.getElementById("enablenotifications") || null;
+
+//if the notifications button is found
+let permissionToSend = null;
+if (enableNotificationsButton) {
+  enableNotificationsButton.addEventListener("click", (event) => {
+    // console.log(event);
+    requestNotificationsPermission();
+  })
+}
+
+//find send show notification button
+const displayNotificationButton = document.getElementById("testnotification") || null;
+
+//if the notifications button is found
+if (displayNotificationButton) {
+  displayNotificationButton.addEventListener("click", (event) => {
+    // console.log(event);
+    // console.log("permissionToSend:", permissionToSend)
+    if (permissionToSend === "granted") {
+      displayNotification();
+    }
+    else {
+      // console.log('permission not granted')
+    }
+  })
+}
+
+//request permission
+function requestNotificationsPermission() {
+  if (window.Notification) {
+    // console.log('requesting permission to send notifications')
+    Notification.requestPermission(reply => {
+      permissionToSend = reply
+      // console.log("reply:", reply)
+    });
   }
 }
 
-function notification() {
+//display notification
+function displayNotification() {
   const options = {
     body: "Testing Our Notification",
     icon: "/favicon-32x32.png"
   };
   swRegistration.showNotification("PWA Notification!", options);
 }
+
