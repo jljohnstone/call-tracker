@@ -21,7 +21,8 @@
     <%= form.text_field :phone_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "btn btn-primary" %>
+  <div class="flex gap-3">
+    <%= form.submit class: "flex-auto btn btn-primary" %>
+    <%#= link_to "Cancel", :back, class: "flex-initial btn btn-ghost" %>
   </div>
 <% end %>

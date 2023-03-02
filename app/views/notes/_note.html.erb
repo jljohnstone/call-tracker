@@ -1,5 +1,5 @@
 <div id="<%= dom_id note %>">
-  <%= link_to customer_path(note.customer), class: "flex justify-between items-center my-3 p-3 bg-base-200 rounded" do %>
+  <%= link_to customer_path(note.customer), data: { turbo_frame: "modal" }, class: "flex justify-between items-center my-3 p-3 bg-base-200 rounded" do %>
     <div class="flex-auto">
       <p class="text-sm"><%= note.created_at.strftime("%m/%d/%y - %l:%M %P") %></p>
       <p><%= note.customer.name %></p>

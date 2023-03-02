@@ -1,5 +1,7 @@
-<div>
+<%= render TurboModalComponent.new(title: "") do %>
   <div>
-    <%= render @customer %>
+    <div>
+      <%= render @customer %>
+    </div>
   </div>
-</div>
+<% end %>
