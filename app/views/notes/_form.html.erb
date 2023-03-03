@@ -3,11 +3,16 @@
     <%= render 'errors', object: note %>
   <% end %>
 
-  <div class="form-control w-full my-3 flex">
-    <%= form.label :customer_id, class: "label label-text" %>
-    <%= form.collection_select :customer_id, Customer.order(:name), :id, :number_and_name, { prompt: true }, { class: "select select-bordered mb-3" } %>
-    <%= link_to "Add new customer", new_customer_path, data: { turbo_frame: "modal" }, class: "btn btn-secondary" %>
-  </div>
+  <%= form.fields_for :customer do |customer| %>
+    <div class="form-control w-full my-3">
+      <%= customer.label :phone_number, class: "label label-text" %>
+      <%= customer.telephone_field :phone_number, class:"input input-bordered" %>
+    </div>
+    <div class="form-control w-full my-3">
+      <%= customer.label :name, class: "label label-text" %>
+      <%= customer.text_field :name, class:"input input-bordered" %>
+    </div>
+  <% end %>
 
   <div class="form-control w-full my-3">
     <%= form.label :content, "Call notes", class: "label label-text" %>
@@ -28,6 +33,5 @@
 
   <div class="flex gap-3">
     <%= form.submit class: "flex-auto btn btn-primary" %>
-    <%#= link_to "Cancel", :back, class: "flex-initial btn btn-ghost" %>
   </div>
 <% end %>

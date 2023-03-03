@@ -1,27 +1,33 @@
 require 'rails_helper'
 
 RSpec.feature "Note Management", type: :feature do
-  # scenario "can create a new note and associate it to a new customer" do
-  #   note = build(:note)
-  #   customer = build(:customer)
-  #   visit new_note_path
-  #   fill_in "Call notes", with: note.content
-  #   fill_in "Customer phone", with: customer.phone_number
-  #   fill_in "Customer name", with: customer.name
-  #   click_button "Create"
-  #   expect(page).to have_content("Note was successfully created")
-  # end
+  scenario "can create a new note and associate it to a new customer" do
+    note = build(:note)
+    customer = build(:customer)
+    customer_count = Customer.count
+    sign_in
+    visit new_note_path
+    fill_in "Name", with: customer.name
+    fill_in "Phone number", with: customer.phone_number
+    fill_in "Call notes", with: note.content
+    click_button "Create"
+    expect(page).to have_content("Note was successfully created")
+    expect(Note.first.customer.phone_number).to eq(customer.phone_number)
+  end
 
   scenario "can create a new note and associate it to an existing customer" do
     note = build(:note)
     customer = create(:customer)
+    customer_count = Customer.count
     sign_in
     visit new_note_path
-    select customer.number_and_name, from: "Customer"
+    fill_in "Name", with: customer.name
+    fill_in "Phone number", with: customer.phone_number
     fill_in "Call notes", with: note.content
     click_button "Create"
     expect(page).to have_content("Note was successfully created")
     expect(Note.first.customer.name).to eq(customer.name)
+    expect(Customer.count).to eq(customer_count)
   end
 
   scenario "can mark a note as completed" do

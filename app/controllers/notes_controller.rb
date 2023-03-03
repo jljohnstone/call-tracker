@@ -14,6 +14,7 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
+    @note.build_customer
   end
 
   # GET /notes/1/edit
@@ -66,6 +67,6 @@ class NotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.require(:note).permit(:content, :completed, :customer_id, :user_id)
+      params.require(:note).permit(:content, :completed, :user_id, customer_attributes: [:phone_number, :name])
     end
 end
