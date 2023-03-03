@@ -8,7 +8,14 @@ class Note < ApplicationRecord
   validates :content, presence: true
 
   def customer_attributes=(attributes)
-    customer = Customer.where(phone_number: attributes[:phone_number]).first || Customer.create(phone_number: attributes[:phone_number], name: attributes[:name])
+    customer = Customer.where(phone_number: attributes[:phone_number]).first
+
+    if !customer
+      customer = Customer.create(phone_number: attributes[:phone_number], name: attributes[:name])
+    elsif customer.name != attributes[:name]
+      customer.update!(name: attributes[:name])
+    end
+
     self.customer = customer
   end
 

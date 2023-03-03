@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :notes
   resources :customers
 
+  get '/autocomplete', to: 'customers#autocomplete'
 
   constraints Clearance::Constraints::SignedOut.new do
     root to: "clearance/sessions#new", as: :signed_out_root
