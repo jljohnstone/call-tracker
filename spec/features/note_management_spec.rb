@@ -39,4 +39,16 @@ RSpec.feature "Note Management", type: :feature do
     expect(page).to have_content("Note was successfully updated")
     expect(Note.last.completed?).to eq(true)
   end
+
+  scenario "can't use an invalid phone number" do
+    note = build(:note)
+    customer = build(:customer_with_invalid_phone_number)
+    sign_in
+    visit new_note_path
+    fill_in "Name", with: customer.name
+    fill_in "Phone number", with: customer.phone_number
+    fill_in "Call notes", with: note.content
+    click_button "Create"
+    expect(page).to have_content("phone number format must be xxx-xxx-xxxx")
+  end
 end

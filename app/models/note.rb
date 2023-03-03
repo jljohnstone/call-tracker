@@ -1,7 +1,9 @@
 class Note < ApplicationRecord
   include PgSearch::Model
   multisearchable against: [:content]
-  belongs_to :customer
+  belongs_to :customer#, inverse_of: :notes
+  accepts_nested_attributes_for :customer
+  validates_associated :customer
   belongs_to :user, optional: true
   validates :content, presence: true
 
