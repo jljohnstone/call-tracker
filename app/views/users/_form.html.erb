@@ -3,42 +3,54 @@
     <%= render 'errors', object: user %>
   <% end %>
 
-  <div class="form-control w-full my-3">
+  <div class="form-control w-full mb-3">
     <%= form.label :first_name, class: "label label-text" %>
-    <%= form.text_field :first_name, class: "input input-bordered" %>
+    <%= form.text_field :first_name, class: "input input-sm input-bordered" %>
   </div>
 
-  <div class="form-control w-full my-3">
+  <div class="form-control w-full mb-3">
     <%= form.label :last_name, class: "label label-text" %>
-    <%= form.text_field :last_name, class: "input input-bordered" %>
+    <%= form.text_field :last_name, class: "input input-sm input-bordered" %>
   </div>
 
-  <div class="form-control my-3">
+  <div class="form-control mb-3">
     <%= form.label :assignable, class: "label cursor-pointer" do %>
       <%= form.check_box :assignable, class: "checkbox" %>
       <span class="label-text flex-grow ml-1">Can be assigned calls</span>
     <% end %>
   </div>
 
-  <div class="form-control w-full my-3">
+  <div class="form-control w-full mb-3">
+    <%= form.label :color, "Color: (for assignment labels)", class: "label label-text" %>
+    <%= form.color_field :color, list: "colors", class: "input input-sm input-bordered w-full" %>
+    <datalist id="colors">
+      <option value="#31349B"></option>
+      <option value="#9B3131"></option>
+      <option value="#319B3D"></option>
+      <option value="#6B42A9"></option>
+      <option value="#1597A8"></option>
+    </datalist>
+  </div>
+
+  <div class="form-control w-full mb-3">
     <%= form.label :time_zone, class: "label label-text" %>
     <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { default: "Central Time (US & Canada)" }, { class: "select select-bordered" } %>
   </div>
 
-  <div class="form-control w-full my-3">
+  <div class="form-control w-full mb-3">
     <%= form.label :email, class: "label label-text" %>
-    <%= form.email_field :email, class: "input input-bordered" %>
+    <%= form.email_field :email, class: "input input-sm input-bordered" %>
   </div>
 
   <% if action_name == "new" %>
-    <div class="form-control w-full my-3">
+    <div class="form-control w-full mb-3">
       <%= form.label :password, class: "label label-text" %>
-      <%= form.password_field :password, class: "input input-bordered" %>
+      <%= form.password_field :password, class: "input input-sm input-bordered" %>
     </div>
   <% end %>
 
   <div class="flex gap-3">
-    <%= form.submit class: "flex-auto btn btn-primary" %>
+    <%= form.submit "Save", class: "flex-auto btn btn-primary" %>
     <%= link_to "Cancel", :back, class: "flex-initial btn btn-ghost" %>
   </div>
 <% end %>

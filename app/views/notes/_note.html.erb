@@ -1,12 +1,12 @@
 <div id="<%= dom_id note %>">
   <%= link_to edit_note_path(note), data: { turbo_frame: "modal" }, class: "flex justify-between items-center my-3 p-3 bg-base-200 rounded" do %>
     <div class="flex-auto">
-      <p class="text-sm"><%= note.created_at.strftime("%m/%d/%y - %l:%M %P") %></p>
-      <p><%= note.customer.name %></p>
+      <p class="text-sm mb-1"><%= note.created_at.strftime("%m/%d/%y - %l:%M %P") %>: <%= note.customer.name %></p>
+      <p class="text-xs"><%= note.content.truncate(40, separator: ' ') %></p>
     </div>
     <div class="flex-initial text-right">
     <% if note.user.present? %>
-      <p class="btn btn-outline btn-square btn-sm"><%= user_initials(note.user.first_name, note.user.last_name) %></p>
+      <p class="btn btn-outline btn-square btn-sm text-white" style="background-color:<%= note.user.color %>"><%= user_initials(note.user.first_name, note.user.last_name) %></p>
     <% end %>
     </div>
   <% end %>

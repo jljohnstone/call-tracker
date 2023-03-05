@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_03_222318) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_05_025043) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_03_222318) do
     t.string "last_name"
     t.string "time_zone", default: "UTC"
     t.boolean "assignable", default: true, null: false
+    t.string "color"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token", unique: true
