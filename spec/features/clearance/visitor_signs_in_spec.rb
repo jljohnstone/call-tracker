@@ -36,9 +36,9 @@ RSpec.feature "Visitor signs in" do
     FactoryBot.create(:user, email: email, password: password)
   end
 
-  def expect_page_to_display_sign_in_error
-    expect(page.body).to include(
-      I18n.t("flashes.failure_after_create", sign_up_path: sign_up_path),
-    )
-  end
+  # def expect_page_to_display_sign_in_error
+  #   expect(page.body).to include(
+  #     I18n.t("flashes.failure_after_create", sign_up_path: sign_up_path),
+  #   )
+  # end
 end

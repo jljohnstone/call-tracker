@@ -32,4 +32,6 @@ group :development do
   gem "selenium-webdriver"
 end
 
-
+group :test do
+  gem "simplecov", require: false
+end
