@@ -28,3 +28,4 @@ pin "source-map-js" # @1.0.2
 pin "tailwindcss/colors", to: "tailwindcss--colors.js" # @3.2.7
 pin "tailwindcss/plugin", to: "tailwindcss--plugin.js" # @3.2.7
 pin "url" # @2.0.1
+pin "imask", to: "https://ga.jspm.io/npm:imask@6.4.3/esm/index.js"

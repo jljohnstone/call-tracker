@@ -8,10 +8,10 @@
       <div class="flex">
         <%= customer.label :phone_number, class: "label label-text flex-auto" %>
         <div class="tooltip tooltip-bottom" data-tip="copied!" data-clipboard-target="tooltip">
-          <%= button_tag "Copy Number", type: :button, class: "flex-inherit btn btn-secondary btn-sm", data: { action: 'click->clipboard#copy'} %>
+          <%= button_tag "Copy Number", type: :button, class: "flex-inherit btn btn-secondary btn-sm", data: { action: 'click->clipboard#copy'} if action_name == "edit" %>
         </div>
       </div>
-      <%= customer.telephone_field :phone_number, list: :phone_numbers, class:"input input-sm input-bordered", data: { action: 'input->autocomplete#lookupNumber', autocomplete_target: "phoneNumber", clipboard_target: "source" } %>
+      <%= customer.telephone_field :phone_number, list: :phone_numbers, class:"input input-sm input-bordered", data: { controller: 'mask', action: 'input->autocomplete#lookupNumber', autocomplete_target: "phoneNumber", clipboard_target: "source", mask_target: "phoneNumber" } %>
       <datalist id="phone_numbers">
         <% Customer.pluck(:phone_number, :name).each do |c| %>
           <option value="<%= c[0] %>"><%= c[1] %></option>
