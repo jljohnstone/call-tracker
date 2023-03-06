@@ -4,7 +4,8 @@ class NotesController < ApplicationController
 
   # GET /notes or /notes.json
   def index
-    @notes = Note.where(completed: false).order(created_at: :asc).includes(:user, :customer)
+    @incompleted_notes = Note.where(completed: false).order(created_at: :asc).includes(:user, :customer)
+    @completed_notes = Note.where(completed: true).order(created_at: :asc).includes(:user, :customer)
   end
 
   # GET /notes/1 or /notes/1.json
