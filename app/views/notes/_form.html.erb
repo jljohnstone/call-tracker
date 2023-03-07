@@ -31,7 +31,7 @@
 
   <div class="form-control w-full mb-3">
     <%= form.label :user_id, "Assign to", class: "label label-text" %>
-    <%= form.collection_select :user_id, User.order(:first_name).where(assignable: true), :id, :full_name, { include_blank: true }, { class: "select select-bordered" } %>
+    <%= form.collection_select :user_id, User.order(:first_name).where(assignable: true), :id, :full_name, { include_blank: "Unassigned" }, { class: "select select-bordered" } %>
   </div>
 
   <div class="form-control mb-3">
