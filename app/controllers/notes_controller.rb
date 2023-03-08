@@ -4,8 +4,8 @@ class NotesController < ApplicationController
   before_action :require_login
 
   def index
-    @incompleted_notes = Note.where(completed: false).order(created_at: :asc).includes(:user, :customer)
-    @completed_notes = Note.where(completed: true).order(created_at: :asc).includes(:user, :customer)
+    @incompleted_notes = Note.where(completed: false).order(updated_at: :asc).includes(:user, :customer)
+    @completed_notes = Note.where(completed: true).order(updated_at: :asc).includes(:user, :customer)
   end
 
   def show
