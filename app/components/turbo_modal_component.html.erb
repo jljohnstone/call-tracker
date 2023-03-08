@@ -1,9 +1,7 @@
 <%= turbo_frame_tag "modal" do %>
-  <%= tag.div data: { controller: "turbo-modal" }, class: "w-screen h-screen absolute z-10 flex p-5 bg-white rounded-md break-words" do %>
+  <%= tag.div data: { controller: "turbo-modal" }, class: "w-screen h-screen absolute z-10 p-3 flex bg-white rounded-md break-words" do %>
     <%= tag.div class: "flex-auto" do %>
-      <!--<h1 class="font-bold text-4xl"><%= @title %></h1>-->
       <%= content %>
-      <%#= button_tag "Cancel", data: { action: "turbo-modal#hide" }, type: :button, class: "btn btn-ghost" %>
     <% end %>
   <% end %>
 <% end %>
