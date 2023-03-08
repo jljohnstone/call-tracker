@@ -1,8 +1,7 @@
 <div id="<%= dom_id note %>">
   <%= link_to edit_note_path(note), data: { turbo_frame: "modal" }, class: "flex justify-between items-center my-3 p-3 bg-base-200 rounded" do %>
     <div class="flex-auto">
-      <p class="text-sm mb-1"><%= note.created_at.strftime("%m/%d/%y - %l:%M %P") %>: <%= note.customer.name %></p>
-      <p class="text-xs"><%= note.content.truncate(40, separator: ' ') %></p>
+      <p class="text-sm"><%= format_date(note.created_at) %>: <%= note.customer.name %></p>
     </div>
     <div class="flex-initial text-right">
     <% if note.user.present? %>

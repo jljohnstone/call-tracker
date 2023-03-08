@@ -34,4 +34,7 @@ en:
     attributes:
       note:
         content: "Notes"
+  time:
+    formats:
+      default: "%-m/%-d/%y"
 
