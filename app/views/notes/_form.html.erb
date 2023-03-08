@@ -1,4 +1,4 @@
-<%= form_with(model: note, class: "contents", data: { turbo_confirm: 'Are you sure?', controller: "autocomplete" }, html: { autocomplete: :off }) do |form| %>
+<%= form_with(model: note, class: "contents", data: { turbo_confirm: 'Are you sure?', controller: "autocomplete", action: "submit->turbo-modal#hide" }, html: { autocomplete: :off }) do |form| %>
   <% if note.errors.any? %>
     <%= render 'errors', object: note %>
   <% end %>

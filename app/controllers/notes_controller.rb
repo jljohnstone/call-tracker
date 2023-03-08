@@ -51,6 +51,6 @@ class NotesController < ApplicationController
     end
 
     def note_params
-      params.require(:note).permit(:content, :completed, :user_id, customer_attributes: [:phone_number, :name])
+      params.require(:note).permit(:content, :completed, :user_id, customer_attributes: [:id, :phone_number, :name])
     end
 end
