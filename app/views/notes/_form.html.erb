@@ -25,7 +25,12 @@
   <% end %>
 
   <div class="form-control w-full mb-3">
-    <%= form.label :content, "Notes", class: "label label-text" %>
+    <%= form.label :content, class: "label label-text" do %>
+      <span>Notes</span>
+      <% if action_name == "edit" %>
+        <span class="italic">updated <%= time_ago_in_words(note.updated_at) %> ago</span>
+      <% end %>
+    <% end %>
     <%= form.text_area :content, rows: 6, class: "textarea textarea-sm textarea-bordered" %>
   </div>
 
