@@ -23,15 +23,20 @@ RSpec.describe Note, type: :model do
       is_expected.to be_valid
     end
 
-    it "is invalid if there's not created by user" do
-      subject.created_by_user = nil
-      is_expected.to be_invalid
-    end
+    # add back once in production - commented out since some notes don't have a created_by_user_id field set
+    # it "is invalid if there's not created by user" do
+    #   subject.created_by_user = nil
+    #   is_expected.to be_invalid
+    # end
   end
 
   describe "default values" do
     it "is not completed by default" do
       expect(subject.completed?).to eq(false)
+    end
+
+    it "is not a priority by default" do
+      expect(subject.priority?).to eq(false)
     end
   end
 end

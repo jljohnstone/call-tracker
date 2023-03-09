@@ -5,5 +5,10 @@ FactoryBot.define do
     association :customer
     association :assigned_to_user
     association :created_by_user
+    priority { :false }
+
+    factory :priority_note do
+      priority { :true }
+    end
   end
 end

@@ -34,6 +34,13 @@
     <%= form.text_area :content, rows: 4, class: "textarea textarea-sm textarea-bordered" %>
   </div>
 
+  <div class="form-control mb-3">
+    <%= form.label :priority, class: "label cursor-pointer" do %>
+      <%= form.check_box :priority, class: "checkbox" %>
+      <span class="label-text flex-grow ml-1">Priority</span>
+    <% end %>
+  </div>
+
   <div class="form-control w-full mb-3">
     <%= form.label :assigned_to_user_id, "Assign to", class: "label label-text" %>
     <%= form.collection_select :assigned_to_user_id, User.order(:first_name).where(assignable: true), :id, :full_name, { include_blank: "Unassigned" }, { class: "select select-bordered" } %>

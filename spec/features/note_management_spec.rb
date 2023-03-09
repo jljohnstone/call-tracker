@@ -76,4 +76,28 @@ RSpec.feature "Note Management", type: :feature do
     expect(Note.first.customer.name).to eq("MR. T")
   end
 
+  scenario "can mark a note as a priority" do
+    note = build(:note)
+    customer = create(:customer)
+    customer_count = Customer.count
+    sign_in
+    visit root_path
+    click_on "New note"
+    fill_in "Phone number", with: customer.phone_number
+    fill_in "Name", with: customer.name
+    fill_in "Notes", with: note.content
+    check "Priority"
+    click_button "Save"
+    expect(Note.first.priority).to be_truthy
+  end
+
+  scenario "priority notes appear at the top of the list" do
+    timestamp = rand(10.hours..6.days).ago
+    priority_note = create(:priority_note, created_at: timestamp)
+    note = create(:note)
+    sign_in
+    visit root_path
+    expect(priority_note.customer.name).to appear_before(note.customer.name)
+  end
+
 end
