@@ -7,6 +7,7 @@ RSpec.feature "Note Management", type: :feature do
     customer_count = Customer.count
     sign_in
     visit new_note_path
+    save_screenshot
     fill_in "Name", with: customer.name
     fill_in "Phone number", with: customer.phone_number
     fill_in "Notes", with: note.content

@@ -4,7 +4,7 @@ class Note < ApplicationRecord
   belongs_to :customer#, inverse_of: :notes
   accepts_nested_attributes_for :customer
   validates_associated :customer
-  belongs_to :user, optional: true
+  belongs_to :assigned_to_user, optional: true, class_name: "User"
   validates :content, presence: true
 
   def customer_attributes=(attributes)

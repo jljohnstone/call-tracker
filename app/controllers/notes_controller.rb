@@ -4,8 +4,8 @@ class NotesController < ApplicationController
   before_action :require_login
 
   def index
-    @incompleted_notes = Note.where(completed: false).where(created_at: 10.days.ago..).order(created_at: :desc).includes(:user, :customer)
-    @completed_notes = Note.where(completed: true).where(updated_at: 10.days.ago..).order(updated_at: :desc).includes(:user, :customer)
+    @incompleted_notes = Note.where(completed: false).where(created_at: 10.days.ago..).order(created_at: :desc).includes(:assigned_to_user, :customer)
+    @completed_notes = Note.where(completed: true).where(updated_at: 10.days.ago..).order(updated_at: :desc).includes(:assigned_to_user, :customer)
   end
 
   def show
@@ -51,6 +51,6 @@ class NotesController < ApplicationController
     end
 
     def note_params
-      params.require(:note).permit(:content, :completed, :user_id, customer_attributes: [:id, :phone_number, :name])
+      params.require(:note).permit(:content, :completed, :assigned_to_user_id, customer_attributes: [:id, :phone_number, :name])
     end
 end

@@ -18,8 +18,8 @@ RSpec.describe Note, type: :model do
       is_expected.to be_invalid
     end
 
-    it "is valid if there's no associated user" do
-      subject.user = nil
+    it "is valid if there's no assigned to user" do
+      subject.assigned_to_user = nil
       is_expected.to be_valid
     end
   end

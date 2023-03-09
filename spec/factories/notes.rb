@@ -3,6 +3,6 @@ FactoryBot.define do
     content { FFaker::Lorem.sentence }
     completed { :false }
     association :customer
-    association :user
+    association :assigned_to_user
   end
 end

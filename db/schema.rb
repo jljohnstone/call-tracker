@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_05_025043) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_043815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -27,11 +27,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_025043) do
     t.text "content"
     t.boolean "completed", default: false, null: false
     t.bigint "customer_id", null: false
-    t.bigint "user_id"
+    t.bigint "assigned_to_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["assigned_to_user_id"], name: "index_notes_on_assigned_to_user_id"
     t.index ["customer_id"], name: "index_notes_on_customer_id"
-    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
