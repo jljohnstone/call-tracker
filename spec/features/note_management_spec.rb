@@ -4,10 +4,9 @@ RSpec.feature "Note Management", type: :feature do
   scenario "can create a new note and associate it to a new customer" do
     note = build(:note)
     customer = build(:customer)
-    customer_count = Customer.count
     sign_in
-    visit new_note_path
-    save_screenshot
+    visit root_path
+    click_on "New note"
     fill_in "Name", with: customer.name
     fill_in "Phone number", with: customer.phone_number
     fill_in "Notes", with: note.content
@@ -21,7 +20,8 @@ RSpec.feature "Note Management", type: :feature do
     customer = create(:customer)
     customer_count = Customer.count
     sign_in
-    visit new_note_path
+    visit root_path
+    click_on "New note"
     fill_in "Phone number", with: customer.phone_number
     fill_in "Name", with: customer.name
     fill_in "Notes", with: note.content
@@ -54,7 +54,8 @@ RSpec.feature "Note Management", type: :feature do
     note = build(:note)
     customer = build(:customer_with_invalid_phone_number)
     sign_in
-    visit new_note_path
+    visit root_path
+    click_on "New note"
     fill_in "Phone number", with: customer.phone_number
     fill_in "Name", with: customer.name
     fill_in "Notes", with: note.content
@@ -66,7 +67,8 @@ RSpec.feature "Note Management", type: :feature do
     note = build(:note)
     customer = create(:customer)
     sign_in
-    visit new_note_path
+    visit root_path
+    click_on "New note"
     fill_in "Phone number", with: customer.phone_number
     fill_in "Name", with: "MR. T"
     fill_in "Notes", with: note.content

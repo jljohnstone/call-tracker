@@ -1,10 +1,11 @@
 class Note < ApplicationRecord
   include PgSearch::Model
   multisearchable against: [:content]
-  belongs_to :customer#, inverse_of: :notes
+  belongs_to :customer
   accepts_nested_attributes_for :customer
   validates_associated :customer
   belongs_to :assigned_to_user, optional: true, class_name: "User"
+  belongs_to :created_by_user, class_name: "User"
   validates :content, presence: true
 
   def customer_attributes=(attributes)

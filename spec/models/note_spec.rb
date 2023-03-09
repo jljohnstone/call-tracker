@@ -22,6 +22,11 @@ RSpec.describe Note, type: :model do
       subject.assigned_to_user = nil
       is_expected.to be_valid
     end
+
+    it "is invalid if there's not created by user" do
+      subject.created_by_user = nil
+      is_expected.to be_invalid
+    end
   end
 
   describe "default values" do

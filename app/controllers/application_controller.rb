@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
     Time.use_zone(current_user.time_zone, &block)
   end
 
-  def ensure_frame_response
-    # return unless Rails.env.development?
-    redirect_to root_path unless turbo_frame_request?
-  end
+  # def ensure_frame_response
+  #   return unless Rails.env.development?
+  #   redirect_to root_path unless turbo_frame_request?
+  # end
 end

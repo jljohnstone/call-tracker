@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i[ show edit update destroy ]
-  before_action :ensure_frame_response, only: %i[ new edit ]
+  # before_action :ensure_frame_response, only: %i[ new edit ]
   before_action :require_login
 
   def index
@@ -13,6 +13,7 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new
+    @note.created_by_user = current_user
     @note.build_customer
   end
 
@@ -21,6 +22,7 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
+    @note.created_by_user = current_user
 
     respond_to do |format|
       if @note.save

@@ -31,7 +31,7 @@
         <span class="italic">updated <%= time_ago_in_words(note.updated_at) %> ago</span>
       <% end %>
     <% end %>
-    <%= form.text_area :content, rows: 6, class: "textarea textarea-sm textarea-bordered" %>
+    <%= form.text_area :content, rows: 4, class: "textarea textarea-sm textarea-bordered" %>
   </div>
 
   <div class="form-control w-full mb-3">
@@ -46,7 +46,8 @@
     <% end %>
   </div>
 
-  <div class="flex gap-3">
+  <div class="flex gap-3 mb-3">
     <%= form.submit "Save", class: "flex-auto btn btn-primary" %>
+    <%= button_tag "Cancel", type: :button, class: "flex-initial btn btn-ghost", data: { action: "click->turbo-modal#hide" } %>
   </div>
 <% end %>

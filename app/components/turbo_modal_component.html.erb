@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "modal" do %>
-  <%= tag.div data: { controller: "turbo-modal" }, class: "w-screen h-screen absolute z-10 p-3 flex bg-white rounded-md break-words" do %>
-    <%= tag.div class: "flex-auto" do %>
+  <%= tag.div data: { controller: "turbo-modal" }, class: "w-full h-full fixed z-20 bg-white break-words overflow-x-hidden overflow-y-auto p-3" do %>
+    <%= tag.div class: "mb-16" do %>
       <%= content %>
     <% end %>
   <% end %>
