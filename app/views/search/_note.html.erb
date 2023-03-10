@@ -1,0 +1,6 @@
+<div class="flex">
+  <p class="flex-initial w-1/4">Note:</p>
+  <div class="flex-auto">
+    <%= link_to note.content, edit_note_path(note.searchable_id), data: { turbo_frame: "modal" }, class: "underline text-blue-500" %>
+  </div>
+</div>

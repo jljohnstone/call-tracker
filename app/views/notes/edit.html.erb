@@ -1,6 +1,4 @@
 <%= render TurboModalComponent.new(title: "Edit Note") do %>
   <%= render "form", note: @note %>
-  <% if @note.created_by_user.present? %>
-    <p class="text-xs text-center italic">Created: <%= format_date(@note.created_at, :date_and_time) %> by <%= @note.created_by_user.full_name %></p>
-  <% end %>
+  <%= render partial: "blame", locals: { note: @note } %>
 <% end %>

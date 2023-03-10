@@ -5,19 +5,13 @@
   <% end %>
 
   <% if @results %>
-    <h2 class="font-bold text-2xl">Results (work in progress)</h2>
-    <ul>
+    <h2 class="font-bold text-2xl"><%= pluralize(@results.count, "result") %></h2>
     <% @results.each do |result| %>
-      <%
-        if result.searchable_type == "Customer"
-          show_path = customer_path(result.searchable_id)
-        elsif result.searchable_type == "Note"
-          show_path = note_path(result.searchable_id)
-        end
-      %>
-      <li><%= link_to result.content, show_path, class: "underline text-blue-500" %></li>
+      <% if result.searchable_type == "Customer" %>
+        <%= render partial: "customer", locals: { customer: result } %>
+      <% elsif result.searchable_type == "Note" %>
+        <%= render partial: "note", locals: { note: result } %>
+      <% end %>
     <% end %>
-    </ul>
   <% end %>
-
 </div>
