@@ -1,6 +1,4 @@
-<div class="flex my-3">
-  <p class="flex-initial w-1/4">Customer:</p>
-  <div class="flex-auto">
-    <%= link_to customer.content, customer_path(customer.searchable_id), data: { turbo_frame: "modal" }, class: "underline text-blue-500" %>
-  </div>
-</div>
+<%= link_to customer_path(customer.searchable_id), data: { turbo_frame: "modal" }, class: "flex items-center my-3" do %>
+  <p class="flex-initial badge badge-sm mr-3">customer</p>
+  <p class="flex-auto underline text-blue-500"><%= customer.content %></p>
+<% end %>

@@ -1,6 +1,6 @@
 <div>
-  <%= form_with url: "/search", method: :get do |form| %>
-    <%= form.text_field :q, value: params[:q] %>
+  <%= form_with url: "/search", method: :get, class: "mb-3" do |form| %>
+    <%= form.text_field :q, value: params[:q], class: "input input-bordered" %>
     <%= form.submit "Search", class: "btn btn-primary" %>
   <% end %>
 

@@ -7,3 +7,13 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 User.create(email: "admin@example.com", password: "adminpass", first_name: "Admin", last_name: "User", time_zone: "UTC", assignable: false) if User.none?
+# 3.times do
+#   FactoryBot.create(:user, assignable: true)
+# end
+# 5.times do
+#   FactoryBot.create(:customer)
+# end
+# assignable_users = User.where(assignable: true)
+# 10.times do
+#   FactoryBot.create(:note, customer: Customer.all.sample, assigned_to_user: assignable_users.sample, created_by_user: User.all.sample)
+# end

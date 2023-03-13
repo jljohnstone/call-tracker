@@ -1,6 +1,4 @@
-<div class="flex">
-  <p class="flex-initial w-1/4">Note:</p>
-  <div class="flex-auto">
-    <%= link_to note.content, edit_note_path(note.searchable_id), data: { turbo_frame: "modal" }, class: "underline text-blue-500" %>
-  </div>
-</div>
+<%= link_to edit_note_path(note.searchable_id), data: { turbo_frame: "modal" }, class: "flex items-center my-3" do %>
+  <p class="flex-initial badge badge-secondary badge-sm mr-3">note</p>
+  <p class="flex-auto underline text-blue-500"><%= note.content %></p>
+<% end %>
